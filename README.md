@@ -48,7 +48,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Adventure Island (U) [!] `B78C09A2`
 * Battle City (J) [!] `F599A07E`
 * Bugs Bunny Crazy Castle, The (U) [!] `DB0C3656`
-* Captain America and The Avengers (U) [!].nes `7254D53D`
+* Captain America and The Avengers (U) [!] `7254D53D`
 * Castlevania III - Dracula's Curse (U) [!] `7CC9C669`
 * Contra Force (U) [!] `83D69922`
 * Danny Sullivan's Indy Heat (U) [!] `311B5A58`
@@ -60,6 +60,7 @@ You can manually delete this text with `.\s.\s.\s.\s.\s.\s0x0........:....:\s..\
 * Kunio-kun no Nekketsu Soccer League (J) [!] `61C27F7B`
 * Legend of Zelda, The (U) (PRG0) [!] `D7AE93DF`
 * Little Mermaid, The (U) [!] `08EB97DB`
+* Little Red Hood (Australia) (Unl) `9CBFAEAE`
 * Mappy (J) [!] `3F0E8E0A`
 * Nuts & Milk (J) [!] `11879FE8`
 * Pac-Man (J) (V1.1) [!] `D747B639`
