@@ -34,7 +34,7 @@ con_btns_Dpad                           = con_btn_Right + con_btn_Left + con_btn
 ; baankswitch, indirect jumps within banks
 ; 1st number is bank to jump to, 2nd number is index
 ; bank 01
-con_bsw_01_03                           = $03 ; 
+con_bsw_01_03                           = $03 ; sprite engine?
 con_bsw_01_06                           = $06 ; 
 con_bsw_01_09                           = $09 ; 
 con_bsw_01_0C                           = $0C ; 
