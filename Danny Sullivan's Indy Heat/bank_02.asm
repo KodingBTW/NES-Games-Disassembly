@@ -555,7 +555,7 @@ C - - - - - 0x01029A 04:828A: AA        TAX
 bra_828B_loop:
 C - - - - - 0x01029B 04:828B: 86 16     STX ram_0016_t07
 C - - - - - 0x01029D 04:828D: A6 15     LDX ram_0015_t25
-; bzk bug? value in 001F can be from ram_001F_t11_object_index
+; bzk bug? value in 001F can be from ram_001F_t11_car_index
 C - - - - - 0x01029F 04:828F: A4 1F     LDY ram_001F_t12
 C - - - - - 0x0102A1 04:8291: A5 19     LDA ram_0019_t04
 C - - - - - 0x0102A3 04:8293: D0 63     BNE bra_82F8
@@ -2859,7 +2859,7 @@ C - - - - - 0x011244 04:9234: 85 16     STA ram_0016_t38
 C - - - - - 0x011246 04:9236: 10 12     BPL bra_924A
 C - - - - - 0x011248 04:9238: A9 30     LDA #$30
 C - - - - - 0x01124A 04:923A: A2 00     LDX #$00
-C - - - - - 0x01124C 04:923C: 86 1E     STX ram_001E_temp
+C - - - - - 0x01124C 04:923C: 86 1E     STX ram_001E_t01
 C - - - - - 0x01124E 04:923E: 20 0A 94  JSR sub_940A_increase_indirect_pointer
 C - - - - - 0x011251 04:9241: A9 30     LDA #$30
 C - - - - - 0x011253 04:9243: A2 02     LDX #$02
@@ -2911,15 +2911,15 @@ C - - - - - 0x0112A0 04:9290: 99 20 07  STA ram_ppu_buffer + $20,Y
 C - - - - - 0x0112A3 04:9293: B1 11     LDA (ram_0011_t19_data),Y
 C - - - - - 0x0112A5 04:9295: 25 1C     AND ram_001C_t26
 C - - - - - 0x0112A7 04:9297: 49 FF     EOR #$FF
-C - - - - - 0x0112A9 04:9299: 85 1D     STA ram_001D_temp
+C - - - - - 0x0112A9 04:9299: 85 1D     STA ram_001D_t13
 C - - - - - 0x0112AB 04:929B: B9 20 07  LDA ram_ppu_buffer + $20,Y
-C - - - - - 0x0112AE 04:929E: 25 1D     AND ram_001D_temp
+C - - - - - 0x0112AE 04:929E: 25 1D     AND ram_001D_t13
 C - - - - - 0x0112B0 04:92A0: 99 20 07  STA ram_ppu_buffer + $20,Y
 C - - - - - 0x0112B3 04:92A3: B1 13     LDA (ram_0013_t05_data),Y
 C - - - - - 0x0112B5 04:92A5: 25 1C     AND ram_001C_t26
-C - - - - - 0x0112B7 04:92A7: 85 1D     STA ram_001D_temp
+C - - - - - 0x0112B7 04:92A7: 85 1D     STA ram_001D_t14
 C - - - - - 0x0112B9 04:92A9: B9 20 07  LDA ram_ppu_buffer + $20,Y
-C - - - - - 0x0112BC 04:92AC: 05 1D     ORA ram_001D_temp
+C - - - - - 0x0112BC 04:92AC: 05 1D     ORA ram_001D_t14
 C - - - - - 0x0112BE 04:92AE: 99 20 07  STA ram_ppu_buffer + $20,Y
 C - - - - - 0x0112C1 04:92B1: C8        INY
 C - - - - - 0x0112C2 04:92B2: C0 08     CPY #$08
@@ -2937,16 +2937,16 @@ C - - - - - 0x0112D9 04:92C9: 05 1C     ORA ram_001C_t27
 C - - - - - 0x0112DB 04:92CB: 99 28 07  STA ram_ppu_buffer + $28,Y
 C - - - - - 0x0112DE 04:92CE: A5 1C     LDA ram_001C_t27
 C - - - - - 0x0112E0 04:92D0: 49 FF     EOR #$FF
-C - - - - - 0x0112E2 04:92D2: 85 1D     STA ram_001D_temp
+C - - - - - 0x0112E2 04:92D2: 85 1D     STA ram_001D_t15
 C - - - - - 0x0112E4 04:92D4: B1 11     LDA (ram_0011_t19_data),Y
-C - - - - - 0x0112E6 04:92D6: 25 1D     AND ram_001D_temp
+C - - - - - 0x0112E6 04:92D6: 25 1D     AND ram_001D_t15
 C - - - - - 0x0112E8 04:92D8: 49 FF     EOR #$FF
 C - - - - - 0x0112EA 04:92DA: 85 1C     STA ram_001C_t28
 C - - - - - 0x0112EC 04:92DC: B9 20 07  LDA ram_ppu_buffer + $20,Y
 C - - - - - 0x0112EF 04:92DF: 25 1C     AND ram_001C_t28
 C - - - - - 0x0112F1 04:92E1: 99 20 07  STA ram_ppu_buffer + $20,Y
 C - - - - - 0x0112F4 04:92E4: B1 13     LDA (ram_0013_t05_data),Y
-C - - - - - 0x0112F6 04:92E6: 25 1D     AND ram_001D_temp
+C - - - - - 0x0112F6 04:92E6: 25 1D     AND ram_001D_t15
 C - - - - - 0x0112F8 04:92E8: 85 1C     STA ram_001C_t29
 C - - - - - 0x0112FA 04:92EA: B9 20 07  LDA ram_ppu_buffer + $20,Y
 C - - - - - 0x0112FD 04:92ED: 05 1C     ORA ram_001C_t29
@@ -3001,13 +3001,13 @@ C - - - - - 0x01134F 04:933F: 20 0A 94  JSR sub_940A_increase_indirect_pointer
 bra_9342:
 C - - - - - 0x011352 04:9342: A5 16     LDA ram_0016_t38
 C - - - - - 0x011354 04:9344: 10 18     BPL bra_935E
-C - - - - - 0x011356 04:9346: E6 1E     INC ram_001E_temp
-C - - - - - 0x011358 04:9348: A5 1E     LDA ram_001E_temp
+C - - - - - 0x011356 04:9346: E6 1E     INC ram_001E_t01
+C - - - - - 0x011358 04:9348: A5 1E     LDA ram_001E_t01
 C - - - - - 0x01135A 04:934A: C9 04     CMP #$04
 C - - - - - 0x01135C 04:934C: 90 10     BCC bra_935E
 C - - - - - 0x01135E 04:934E: A9 80     LDA #$80
 C - - - - - 0x011360 04:9350: A2 00     LDX #$00
-C - - - - - 0x011362 04:9352: 86 1E     STX ram_001E_temp
+C - - - - - 0x011362 04:9352: 86 1E     STX ram_001E_t01
 C - - - - - 0x011364 04:9354: 20 0A 94  JSR sub_940A_increase_indirect_pointer
 C - - - - - 0x011367 04:9357: A9 80     LDA #$80
 C - - - - - 0x011369 04:9359: A2 02     LDX #$02
