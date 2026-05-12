@@ -520,6 +520,7 @@ C - - - - - 0x01025E 04:824E: 26 16     ROL ram_0016_t06
 C - - - - - 0x010260 04:8250: 18        CLC
 C - - - - - 0x010261 04:8251: 65 15     ADC ram_0015_t24
 C - - - - - 0x010263 04:8253: 90 03     BCC bra_8258_not_overflow
+; if overflow
 C - - - - - 0x010265 04:8255: E6 16     INC ram_0016_t06
 C - - - - - 0x010267 04:8257: 18        CLC
 bra_8258_not_overflow:  ; C = 0
@@ -726,9 +727,9 @@ C D 0 - - - 0x010389 04:8379: AD 47 06  LDA ram_table_index_text_timer
 C - - - - - 0x01038C 04:837C: 0A        ASL
 C - - - - - 0x01038D 04:837D: AA        TAX
 C - - - - - 0x01038E 04:837E: BD EA 84  LDA tbl_84EA,X
-C - - - - - 0x010391 04:8381: 85 8D     STA ram_008D_temp
+C - - - - - 0x010391 04:8381: 85 8D     STA ram_008D_t01_data
 C - - - - - 0x010393 04:8383: BD EB 84  LDA tbl_84EA + $01,X
-C - - - - - 0x010396 04:8386: 85 8E     STA ram_008E
+C - - - - - 0x010396 04:8386: 85 8E     STA ram_008D_t01_data + $01
 C - - - - - 0x010398 04:8388: A9 00     LDA #$00
 C - - - - - 0x01039A 04:838A: 8D 4B 06  STA ram_064B
 loc_838D:
@@ -737,7 +738,7 @@ C D 0 - - - 0x01039D 04:838D: A0 00     LDY #$00
 C - - - - - 0x01039F 04:838F: AD 4B 06  LDA ram_064B
 C - - - - - 0x0103A2 04:8392: 30 37     BMI bra_83CB_RTS
 C - - - - - 0x0103A4 04:8394: D0 1A     BNE bra_83B0
-C - - - - - 0x0103A6 04:8396: B1 8D     LDA (ram_008D_temp),Y
+C - - - - - 0x0103A6 04:8396: B1 8D     LDA (ram_008D_t01_data),Y
 C - - - - - 0x0103A8 04:8398: 10 09     BPL bra_83A3
 C - - - - - 0x0103AA 04:839A: A9 FF     LDA #$FF
 C - - - - - 0x0103AC 04:839C: 8D 4B 06  STA ram_064B
@@ -746,12 +747,12 @@ C - - - - - 0x0103B2 04:83A2: 60        RTS
 bra_83A3:
 C - - - - - 0x0103B3 04:83A3: 8D 48 06  STA ram_0648
 C - - - - - 0x0103B6 04:83A6: C8        INY
-C - - - - - 0x0103B7 04:83A7: B1 8D     LDA (ram_008D_temp),Y
+C - - - - - 0x0103B7 04:83A7: B1 8D     LDA (ram_008D_t01_data),Y
 C - - - - - 0x0103B9 04:83A9: 8D 49 06  STA ram_0649
 C - - - - - 0x0103BC 04:83AC: C8        INY
 C - - - - - 0x0103BD 04:83AD: EE 4B 06  INC ram_064B
 bra_83B0:
-C - - - - - 0x0103C0 04:83B0: B1 8D     LDA (ram_008D_temp),Y
+C - - - - - 0x0103C0 04:83B0: B1 8D     LDA (ram_008D_t01_data),Y
 C - - - - - 0x0103C2 04:83B2: 30 04     BMI bra_83B8
 C - - - - - 0x0103C4 04:83B4: 09 80     ORA #$80
 C - - - - - 0x0103C6 04:83B6: D0 05     BNE bra_83BD    ; jmp
@@ -763,10 +764,11 @@ C - - - - - 0x0103CD 04:83BD: 8D 4A 06  STA ram_064A
 C - - - - - 0x0103D0 04:83C0: C8        INY
 C - - - - - 0x0103D1 04:83C1: 98        TYA
 C - - - - - 0x0103D2 04:83C2: 18        CLC
-C - - - - - 0x0103D3 04:83C3: 65 8D     ADC ram_008D_temp
-C - - - - - 0x0103D5 04:83C5: 85 8D     STA ram_008D_temp
+C - - - - - 0x0103D3 04:83C3: 65 8D     ADC ram_008D_t01_data
+C - - - - - 0x0103D5 04:83C5: 85 8D     STA ram_008D_t01_data
 C - - - - - 0x0103D7 04:83C7: 90 02     BCC bra_83CB_RTS
-C - - - - - 0x0103D9 04:83C9: E6 8E     INC ram_008E
+; if overflow
+C - - - - - 0x0103D9 04:83C9: E6 8E     INC ram_008D_t01_data + $01
 bra_83CB_RTS:
 C - - - - - 0x0103DB 04:83CB: 60        RTS
 
@@ -3624,8 +3626,10 @@ C - - - - - 0x0118E7 04:98D7: 18        CLC
 C - - - - - 0x0118E8 04:98D8: 65 11     ADC ram_0011_t20_copmressed_tiles_data
 C - - - - - 0x0118EA 04:98DA: 85 11     STA ram_0011_t20_copmressed_tiles_data
 C - - - - - 0x0118EC 04:98DC: 90 02     BCC bra_98E0_not_overflow
+; if overflow
 - - - - - - 0x0118EE 04:98DE: E6 12     INC ram_0011_t20_copmressed_tiles_data + $01
 bra_98E0_not_overflow:
+; bzk optimize, same code as 0x018415
 C - - - - - 0x0118F0 04:98E0: A0 00     LDY #$00
 C - - - - - 0x0118F2 04:98E2: B1 13     LDA (ram_0013_t06_data),Y
 C - - - - - 0x0118F4 04:98E4: 85 16     STA ram_0016_t39_control_byte_for_00
@@ -3639,31 +3643,33 @@ bra_98EE_loop:
 C - - - - - 0x0118FE 04:98EE: B1 13     LDA (ram_0013_t06_data),Y
 C - - - - - 0x011900 04:98F0: C8        INY
 C - - - - - 0x011901 04:98F1: D0 02     BNE bra_98F5_not_overflow
+; if overflow
 C - - - - - 0x011903 04:98F3: E6 14     INC ram_0013_t06_data + $01
 bra_98F5_not_overflow:
 C - - - - - 0x011905 04:98F5: C5 16     CMP ram_0016_t39_control_byte_for_00
-C - - - - - 0x011907 04:98F7: F0 11     BEQ bra_990A
+C - - - - - 0x011907 04:98F7: F0 11     BEQ bra_990A_write_00_tile
 C - - - - - 0x011909 04:98F9: C5 17     CMP ram_0017_t19_control_byte_for_FF
-C - - - - - 0x01190B 04:98FB: F0 11     BEQ bra_990E
-; write actual byte
+C - - - - - 0x01190B 04:98FB: F0 11     BEQ bra_990E_write_FF_tile
+; if not control byte, write tile from data
 C - - - - - 0x01190D 04:98FD: 8D 07 20  STA $2007
 C - - - - - 0x011910 04:9900: CA        DEX
 C - - - - - 0x011911 04:9901: 10 EB     BPL bra_98EE_loop
 C - - - - - 0x011913 04:9903: C6 15     DEC ram_0015_t58_loop_counter
 C - - - - - 0x011915 04:9905: D0 E5     BNE bra_98EC_loop
 C - - - - - 0x011917 04:9907: 4C B5 98  JMP loc_98B5_reading_data_loop
-bra_990A:
+bra_990A_write_00_tile:
 C - - - - - 0x01191A 04:990A: A9 00     LDA #$00
-C - - - - - 0x01191C 04:990C: F0 02     BEQ bra_9910    ; jmp
-bra_990E:
+C - - - - - 0x01191C 04:990C: F0 02     BEQ bra_9910_write_tile     ; jmp
+bra_990E_write_FF_tile:
 C - - - - - 0x01191E 04:990E: A9 FF     LDA #$FF
-bra_9910:
+bra_9910_write_tile:
 C - - - - - 0x011920 04:9910: 48        PHA
 C - - - - - 0x011921 04:9911: B1 13     LDA (ram_0013_t06_data),Y
 C - - - - - 0x011923 04:9913: 85 18     STA ram_0018_t24_counter    ; counter for 00/FF bytes
 C - - - - - 0x011925 04:9915: 68        PLA
 C - - - - - 0x011926 04:9916: C8        INY
 C - - - - - 0x011927 04:9917: D0 02     BNE bra_991B_not_overflow
+; if overflow
 C - - - - - 0x011929 04:9919: E6 14     INC ram_0013_t06_data + $01
 bra_991B_not_overflow:
 bra_991B_loop:
