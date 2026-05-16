@@ -32,20 +32,23 @@ C - - - - - 0x01801F 06:800F: A9 0F     LDA #> $0FB0
 C - - - - - 0x018021 06:8011: 8D 06 20  STA $2006
 C - - - - - 0x018024 06:8014: A9 B0     LDA #< $0FB0
 C - - - - - 0x018026 06:8016: 8D 06 20  STA $2006
+; 
 C - - - - - 0x018029 06:8019: A9 30     LDA #< ofs_8230_RTS
 C - - - - - 0x01802B 06:801B: 85 0D     STA ram_000D_t08_jmp
 C - - - - - 0x01802D 06:801D: A9 82     LDA #> ofs_8230_RTS
 C - - - - - 0x01802F 06:801F: 85 0E     STA ram_000D_t08_jmp + $01
+; calculate array index
 C - - - - - 0x018031 06:8021: A5 DC     LDA ram_race
 ; * 05
 C - - - - - 0x018033 06:8023: 0A        ASL
 C - - - - - 0x018034 06:8024: 0A        ASL
 C - - - - - 0x018035 06:8025: 65 DC     ADC ram_race
 C - - - - - 0x018037 06:8027: A8        TAY
+; 
 C - - - - - 0x018038 06:8028: A2 04     LDX #$04
 bra_802A_loop:
-C - - - - - 0x01803A 06:802A: 84 21     STY ram_0021_t16
-C - - - - - 0x01803C 06:802C: B9 09 01  LDA ram_0109,Y
+C - - - - - 0x01803A 06:802A: 84 21     STY ram_0021_t16_nickname_array_index
+C - - - - - 0x01803C 06:802C: B9 09 01  LDA ram_0109_nickname,Y
 C - - - - - 0x01803F 06:802F: 20 E5 81  JSR sub_81E5_convert_letters_to_tiles
 C - - - - - 0x018042 06:8032: 20 9B 80  JSR sub_809B
 C - - - - - 0x018045 06:8035: A0 00     LDY #$00
@@ -55,8 +58,10 @@ C - - - - - 0x018049 06:8039: 8D 07 20  STA $2007
 C - - - - - 0x01804C 06:803C: C8        INY
 C - - - - - 0x01804D 06:803D: C0 07     CPY #$07
 C - - - - - 0x01804F 06:803F: D0 F6     BNE bra_8037_loop
+; 
 C - - - - - 0x018051 06:8041: A9 FF     LDA #$FF
 C - - - - - 0x018053 06:8043: 8D 07 20  STA $2007
+; 
 C - - - - - 0x018056 06:8046: A0 00     LDY #$00
 bra_8048_loop:
 C - - - - - 0x018058 06:8048: B1 11     LDA (ram_0011_t21_ppu_data),Y
@@ -64,16 +69,20 @@ C - - - - - 0x01805A 06:804A: 8D 07 20  STA $2007
 C - - - - - 0x01805D 06:804D: C8        INY
 C - - - - - 0x01805E 06:804E: C0 07     CPY #$07
 C - - - - - 0x018060 06:8050: D0 F6     BNE bra_8048_loop
+; 
 C - - - - - 0x018062 06:8052: A9 FF     LDA #$FF
 C - - - - - 0x018064 06:8054: 8D 07 20  STA $2007
-C - - - - - 0x018067 06:8057: A4 21     LDY ram_0021_t16
+; 
+C - - - - - 0x018067 06:8057: A4 21     LDY ram_0021_t16_nickname_array_index
 C - - - - - 0x018069 06:8059: C8        INY
 C - - - - - 0x01806A 06:805A: CA        DEX
 C - - - - - 0x01806B 06:805B: 10 CD     BPL bra_802A_loop
+; 
 C - - - - - 0x01806D 06:805D: A9 1B     LDA #> $1B50
 C - - - - - 0x01806F 06:805F: 8D 06 20  STA $2006
 C - - - - - 0x018072 06:8062: A9 50     LDA #< $1B50
 C - - - - - 0x018074 06:8064: 8D 06 20  STA $2006
+; 
 C - - - - - 0x018077 06:8067: A5 DC     LDA ram_race
 ; * 0C
 C - - - - - 0x018079 06:8069: 0A        ASL
@@ -82,6 +91,7 @@ C - - - - - 0x01807B 06:806B: 85 15     STA ram_0015_t06
 C - - - - - 0x01807D 06:806D: 0A        ASL
 C - - - - - 0x01807E 06:806E: 65 15     ADC ram_0015_t06
 C - - - - - 0x018080 06:8070: A8        TAY
+; 
 C - - - - - 0x018081 06:8071: A2 0C     LDX #$0C
 bra_8073_loop:
 C - - - - - 0x018083 06:8073: 84 21     STY ram_0021_t01_table_index
@@ -94,6 +104,7 @@ bra_8082_loop:
 C - - - - - 0x018092 06:8082: 8D 07 20  STA $2007
 C - - - - - 0x018095 06:8085: 88        DEY
 C - - - - - 0x018096 06:8086: 10 FA     BPL bra_8082_loop
+; 
 C - - - - - 0x018098 06:8088: A0 00     LDY #$00
 bra_808A_loop:
 C - - - - - 0x01809A 06:808A: B1 11     LDA (ram_0011_t21_ppu_data),Y
@@ -101,6 +112,7 @@ C - - - - - 0x01809C 06:808C: 8D 07 20  STA $2007
 C - - - - - 0x01809F 06:808F: C8        INY
 C - - - - - 0x0180A0 06:8090: C0 07     CPY #$07
 C - - - - - 0x0180A2 06:8092: D0 F6     BNE bra_808A_loop
+; 
 C - - - - - 0x0180A4 06:8094: A4 21     LDY ram_0021_t01_table_index
 C - - - - - 0x0180A6 06:8096: C8        INY
 C - - - - - 0x0180A7 06:8097: CA        DEX
@@ -166,7 +178,7 @@ C - - - - - 0x018155 06:8145: 75 87     ADC ram_position,X
 C - - - - - 0x018157 06:8147: A8        TAY
 C - - - - - 0x018158 06:8148: A2 04     LDX #$04
 bra_814A_loop:
-C - - - - - 0x01815A 06:814A: 84 21     STY ram_0021_t17
+C - - - - - 0x01815A 06:814A: 84 21     STY ram_0021_t17_nickname_array_index
 C - - - - - 0x01815C 06:814C: A4 16     LDY ram_0016_t41
 C - - - - - 0x01815E 06:814E: B9 CC 81  LDA tbl_81CC,Y
 C - - - - - 0x018161 06:8151: A8        TAY
@@ -175,10 +187,10 @@ C - - - - - 0x018165 06:8155: 85 0D     STA ram_000D_t08_jmp
 C - - - - - 0x018167 06:8157: B9 75 81  LDA tbl_8174 + $01,Y
 C - - - - - 0x01816A 06:815A: 85 0E     STA ram_000D_t08_jmp + $01
 C - - - - - 0x01816C 06:815C: E6 16     INC ram_0016_t41
-C - - - - - 0x01816E 06:815E: A4 21     LDY ram_0021_t17
+C - - - - - 0x01816E 06:815E: A4 21     LDY ram_0021_t17_nickname_array_index
 C - - - - - 0x018170 06:8160: B9 D4 03  LDA ram_nickname,Y
 C - - - - - 0x018173 06:8163: 20 E5 81  JSR sub_81E5_convert_letters_to_tiles
-C - - - - - 0x018176 06:8166: A4 21     LDY ram_0021_t17
+C - - - - - 0x018176 06:8166: A4 21     LDY ram_0021_t17_nickname_array_index
 C - - - - - 0x018178 06:8168: C8        INY
 C - - - - - 0x018179 06:8169: CA        DEX
 C - - - - - 0x01817A 06:816A: 10 DE     BPL bra_814A_loop
@@ -735,6 +747,7 @@ C - - - - - 0x018414 06:8404: 60        RTS
 
 ofs_011_decompression_handler_8405_02:
 ; con_decomp_02
+; bzk optimize, same code as 0x0118F0
 C - - J - - 0x018415 06:8405: A0 00     LDY #$00
 C - - - - - 0x018417 06:8407: B1 13     LDA (ram_0013_t07_data),Y
 C - - - - - 0x018419 06:8409: 85 16     STA ram_0016_t40_control_byte_for_00
@@ -748,31 +761,33 @@ bra_8413_loop:
 C - - - - - 0x018423 06:8413: B1 13     LDA (ram_0013_t07_data),Y
 C - - - - - 0x018425 06:8415: C8        INY
 C - - - - - 0x018426 06:8416: D0 02     BNE bra_841A_not_overflow
+; if overflow
 C - - - - - 0x018428 06:8418: E6 14     INC ram_0013_t07_data + $01
 bra_841A_not_overflow:
 C - - - - - 0x01842A 06:841A: C5 16     CMP ram_0016_t40_control_byte_for_00
-C - - - - - 0x01842C 06:841C: F0 11     BEQ bra_842F
+C - - - - - 0x01842C 06:841C: F0 11     BEQ bra_842F_write_00_tile
 C - - - - - 0x01842E 06:841E: C5 17     CMP ram_0017_t25_control_byte_for_FF
-C - - - - - 0x018430 06:8420: F0 11     BEQ bra_8433
-; write actual byte
+C - - - - - 0x018430 06:8420: F0 11     BEQ bra_8433_write_FF_tile
+; if not control byte, write tile from data
 C - - - - - 0x018432 06:8422: 8D 07 20  STA $2007
 C - - - - - 0x018435 06:8425: CA        DEX
 C - - - - - 0x018436 06:8426: 10 EB     BPL bra_8413_loop
 C - - - - - 0x018438 06:8428: C6 15     DEC ram_0015_t02_loop_counter
 C - - - - - 0x01843A 06:842A: D0 E5     BNE bra_8411_loop
 C - - - - - 0x01843C 06:842C: 4C 58 82  JMP loc_8258_reading_data_loop
-bra_842F:
+bra_842F_write_00_tile:
 C - - - - - 0x01843F 06:842F: A9 00     LDA #$00
-C - - - - - 0x018441 06:8431: F0 02     BEQ bra_8435    ; jmp
-bra_8433:
+C - - - - - 0x018441 06:8431: F0 02     BEQ bra_8435_write_tile     ; jmp
+bra_8433_write_FF_tile:
 C - - - - - 0x018443 06:8433: A9 FF     LDA #$FF
-bra_8435:
+bra_8435_write_tile:
 C - - - - - 0x018445 06:8435: 48        PHA
 C - - - - - 0x018446 06:8436: B1 13     LDA (ram_0013_t07_data),Y
 C - - - - - 0x018448 06:8438: 85 18     STA ram_0018_t25_counter    ; counter for 00/FF bytes
 C - - - - - 0x01844A 06:843A: 68        PLA
 C - - - - - 0x01844B 06:843B: C8        INY
 C - - - - - 0x01844C 06:843C: D0 02     BNE bra_8440_not_overflow
+; if overflow
 C - - - - - 0x01844E 06:843E: E6 14     INC ram_0013_t07_data + $01
 bra_8440_not_overflow:
 bra_8440_loop:
